@@ -1,9 +1,9 @@
-CACHE_TYPE = "file"
+CACHE_TYPE = "file"   
 REDIS_HOST = "localhost"
 REDIS_PORT = 6379
 
 REQUEST_TIMEOUT = 10
-RATE_LIMIT = 5
+RATE_LIMIT = 5   
 CACHE_TTL = 300 
 
 OUTPUT_FILE = "scraped_data.csv"
