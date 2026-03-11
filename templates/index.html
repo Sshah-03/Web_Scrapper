@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Web Scraper Dashboard</title>
+<link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Web Scraper Dashboard</h1>
+
+<div class="controls">
+
+<form id="scrapeForm">
+
+<select name="source">
+
+<option value="fakestore">FakeStore Products</option>
+<option value="hackernews">HackerNews</option>
+<option value="reddit">Reddit Python</option>
+
+</select>
+
+<button type="submit">Scrape Data</button>
+
+</form>
+
+</div>
+
+<div id="results" class="results"></div>
+
+</div>
+
+<script>
+
+document.getElementById("scrapeForm").addEventListener("submit", async function(e){
+
+e.preventDefault()
+
+let formData = new FormData(this)
+
+let response = await fetch("/scrape",{
+method:"POST",
+body:formData
+})
+
+let data = await response.json()
+
+let container = document.getElementById("results")
+
+container.innerHTML = ""
+
+let results = data.results
+
+if(!results){
+container.innerHTML = "<p>No data found</p>"
+return
+}
+
+results.forEach(item => {
+
+let card = document.createElement("div")
+card.className = "card"
+
+card.innerHTML = `
+
+<h3>${item.title || "No Title"}</h3>
+
+${item.image ? `<img src="${item.image}" />` : ""}
+
+<p>${item.description || ""}</p>
+
+${item.price ? `<p class="price">$${item.price}</p>` : ""}
+
+${item.score ? `<p class="score">Score: ${item.score}</p>` : ""}
+
+<a href="${item.url || '#'}" target="_blank">View Link</a>
+
+`
+
+container.appendChild(card)
+
+})
+
+})
+
+</script>
+
+</body>
+</html>

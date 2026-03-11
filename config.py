@@ -1,9 +1,7 @@
-CACHE_TYPE = "file"   
-REDIS_HOST = "localhost"
-REDIS_PORT = 6379
+class Config:
 
-REQUEST_TIMEOUT = 10
-RATE_LIMIT = 5   
-CACHE_TTL = 300 
+    FAKSTORE_URL = "https://fakestoreapi.com/products"
 
-OUTPUT_FILE = "scraped_data.csv"
+    HACKERNEWS_URL = "https://hacker-news.firebaseio.com/v0/topstories.json"
+
+    REDDIT_URL = "https://www.reddit.com/r/python/top.json"
