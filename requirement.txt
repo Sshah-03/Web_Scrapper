@@ -1,6 +1,0 @@
-httpx
-pandas
-pydantic
-tenacity
-redis
-asyncio
